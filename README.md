@@ -1,2 +1,0 @@
-# recipebox
-Created with CodeSandbox
