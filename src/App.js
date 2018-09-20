@@ -2,26 +2,27 @@ import React from "react";
 class App extends React.Component {
   state = {
     recipes: [
-      { recipeName: "lemonrice1", ingredients: ["lemon", "rice", "chilly"] },
-      { recipeName: "lemonrice2", ingredients: ["lemon", "rice", "chilly"] },
-      { recipeName: "lemonrice3", ingredients: ["lemon", "rice", "chilly"] }
+      { recipeName: "lemonrice1", ingredients: ["lemon1", "rice", "chilly"] },
+      { recipeName: "lemonrice2", ingredients: ["lemon2", "rice", "chilly"] },
+      { recipeName: "lemonrice3", ingredients: ["lemon3", "rice", "chilly"] }
     ]
   };
   render() {
-    const { recipes } = this.state;
+    //const { recipes } = this.state;
     return (
       <div className="App container">
         {this.state.recipes.map((rec, index) => (
-          <div className="accordion" id="accordionExample">
-            <div className="card">
-              <div className="card-header" id="headingOne">
-                <h5 className="mb-0">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
                   <button
-                    className="btn btn-link"
+                    class="btn btn-link"
                     type="button"
                     data-toggle="collapse"
-                    data-target="2"
+                    data-target={"#" + rec.recipeName}
                     aria-expanded="true"
+                    aria-controls="collapseOne"
                   >
                     {rec.recipeName}
                   </button>
@@ -29,12 +30,16 @@ class App extends React.Component {
               </div>
 
               <div
-                id="2"
-                className="collapse"
+                id={rec.recipeName}
+                class="collapse"
                 aria-labelledby="headingOne"
                 data-parent="#accordionExample"
               >
-                <div className="card-body" />
+                <div class="card-body">
+                  {rec.ingredients.map(ing => <li>{ing}</li>)}
+                </div>
+                <button className="btn btn-success">Edit</button>{" "}
+                <button className="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>
