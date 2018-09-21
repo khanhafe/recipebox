@@ -7,6 +7,12 @@ class App extends React.Component {
       { recipeName: "lemonrice3", ingredients: ["lemon3", "rice", "chilly"] }
     ]
   };
+
+  deleteRecipe(index) {
+    let recipes = this.state.recipes.slice();
+    recipes.splice(index, 1);
+    this.setState({ recipes });
+  }
   render() {
     //const { recipes } = this.state;
     return (
@@ -34,16 +40,23 @@ class App extends React.Component {
                 class="collapse"
                 aria-labelledby="headingOne"
                 data-parent="#accordionExample"
+                eventKey={index}
               >
                 <div class="card-body">
-                  {rec.ingredients.map(ing => <li>{ing}</li>)}
+                  {rec.ingredients.map(ing => <li key={ing}>{ing}</li>)}
                 </div>
                 <button className="btn btn-success">Edit</button>{" "}
-                <button className="btn btn-danger">Delete</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={event => this.deleteRecipe(index)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
         ))}
+        <button className="btn btn-primary">Add Recipe</button>
       </div>
     );
   }
